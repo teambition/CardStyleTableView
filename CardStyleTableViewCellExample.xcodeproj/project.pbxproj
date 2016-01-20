@@ -13,6 +13,9 @@
 		D3C25A3F1C4F388600D3A3DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3C25A3E1C4F388600D3A3DA /* Assets.xcassets */; };
 		D3C25A641C4F3AD200D3A3DA /* CardStyleTableViewCell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3C25A631C4F3AD200D3A3DA /* CardStyleTableViewCell.framework */; };
 		D3C25A651C4F3AD200D3A3DA /* CardStyleTableViewCell.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D3C25A631C4F3AD200D3A3DA /* CardStyleTableViewCell.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D3C25A681C4F3FAD00D3A3DA /* Example1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C25A671C4F3FAD00D3A3DA /* Example1ViewController.swift */; };
+		D3C25A6A1C4F9DDA00D3A3DA /* Example2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C25A691C4F9DDA00D3A3DA /* Example2ViewController.swift */; };
+		D3C25A6C1C4F9E5600D3A3DA /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C25A6B1C4F9E5600D3A3DA /* PhotoCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,6 +40,9 @@
 		D3C25A3E1C4F388600D3A3DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D3C25A431C4F388600D3A3DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3C25A631C4F3AD200D3A3DA /* CardStyleTableViewCell.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = CardStyleTableViewCell.framework; path = "/Users/hongxin/Library/Developer/Xcode/DerivedData/CardStyleTableViewCell-hhtwvfypiwkxrebtbkyoqywpsnhe/Build/Products/Debug-iphoneos/CardStyleTableViewCell.framework"; sourceTree = "<absolute>"; };
+		D3C25A671C4F3FAD00D3A3DA /* Example1ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Example1ViewController.swift; sourceTree = "<group>"; };
+		D3C25A691C4F9DDA00D3A3DA /* Example2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Example2ViewController.swift; sourceTree = "<group>"; };
+		D3C25A6B1C4F9E5600D3A3DA /* PhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +79,9 @@
 			children = (
 				D3C25A371C4F388600D3A3DA /* AppDelegate.swift */,
 				D3C25A391C4F388600D3A3DA /* ViewController.swift */,
+				D3C25A671C4F3FAD00D3A3DA /* Example1ViewController.swift */,
+				D3C25A6B1C4F9E5600D3A3DA /* PhotoCell.swift */,
+				D3C25A691C4F9DDA00D3A3DA /* Example2ViewController.swift */,
 				D3C25A3B1C4F388600D3A3DA /* Main.storyboard */,
 				D3C25A3E1C4F388600D3A3DA /* Assets.xcassets */,
 				D3C25A431C4F388600D3A3DA /* Info.plist */,
@@ -151,8 +160,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3C25A6A1C4F9DDA00D3A3DA /* Example2ViewController.swift in Sources */,
+				D3C25A6C1C4F9E5600D3A3DA /* PhotoCell.swift in Sources */,
 				D3C25A3A1C4F388600D3A3DA /* ViewController.swift in Sources */,
 				D3C25A381C4F388600D3A3DA /* AppDelegate.swift in Sources */,
+				D3C25A681C4F3FAD00D3A3DA /* Example1ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
