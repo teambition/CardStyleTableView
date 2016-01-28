@@ -7,10 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D3788A341C5A139B008318C1 /* CardStyleTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3788A331C5A139B008318C1 /* CardStyleTableView.swift */; };
+		D3788A361C5A19BA008318C1 /* CardStyleTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3788A351C5A19BA008318C1 /* CardStyleTableViewDelegate.swift */; };
 		D3C25A5F1C4F3A1400D3A3DA /* CardStyleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C25A5E1C4F3A1400D3A3DA /* CardStyleTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D3788A331C5A139B008318C1 /* CardStyleTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardStyleTableView.swift; sourceTree = "<group>"; };
+		D3788A351C5A19BA008318C1 /* CardStyleTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardStyleTableViewDelegate.swift; sourceTree = "<group>"; };
 		D3C25A531C4F393700D3A3DA /* CardStyleTableViewCell.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CardStyleTableViewCell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3C25A5E1C4F3A1400D3A3DA /* CardStyleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardStyleTableViewCell.swift; sourceTree = "<group>"; };
 		D3C25A611C4F3A5F00D3A3DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -47,6 +51,8 @@
 		D3C25A551C4F393700D3A3DA /* CardStyleTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
+				D3788A351C5A19BA008318C1 /* CardStyleTableViewDelegate.swift */,
+				D3788A331C5A139B008318C1 /* CardStyleTableView.swift */,
 				D3C25A5E1C4F3A1400D3A3DA /* CardStyleTableViewCell.swift */,
 			);
 			path = CardStyleTableViewCell;
@@ -138,7 +144,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3788A361C5A19BA008318C1 /* CardStyleTableViewDelegate.swift in Sources */,
 				D3C25A5F1C4F3A1400D3A3DA /* CardStyleTableViewCell.swift in Sources */,
+				D3788A341C5A139B008318C1 /* CardStyleTableView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

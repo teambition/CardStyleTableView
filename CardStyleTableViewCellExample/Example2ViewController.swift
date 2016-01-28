@@ -13,6 +13,9 @@ class Example2ViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let tableView = tableView as? CardStyleTableView {
+            tableView.cardStyleSource = self
+        }
     }
     
     // MARK: - Table view data source
@@ -30,7 +33,6 @@ class Example2ViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("PhotoCell", forIndexPath: indexPath) as! PhotoCell
-        cell.cardStyleDelegate = self
         return cell
     }
     
@@ -53,7 +55,7 @@ class Example2ViewController: UITableViewController {
 
 }
 
-extension Example2ViewController: CardStyleTableViewCellDelegate {
+extension Example2ViewController: CardStyleTableViewStyleSource {
     func roundingCornersForCardInSection(section: Int) -> UIRectCorner {
         return [.AllCorners]
     }

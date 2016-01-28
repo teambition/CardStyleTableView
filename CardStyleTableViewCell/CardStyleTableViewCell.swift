@@ -8,36 +8,8 @@
 
 import UIKit
 
-public protocol CardStyleTableViewCellDelegate {
-    func roundingCornersForCardInSection(section: Int) -> UIRectCorner
-    func leftPaddingForCardStyleTableViewCell() -> CGFloat
-    func rightPaddingForCardStyleTableViewCell() -> CGFloat
-    func cornerRadiusForCardStyleTableViewCell() -> CGFloat
-}
-
-public extension CardStyleTableViewCellDelegate {
-    func roundingCornersForCardInSection(section: Int) -> UIRectCorner {
-        return UIRectCorner.AllCorners
-    }
-}
-
 public class CardStyleTableViewCell: UITableViewCell {
-    public var cardStyleDelegate: CardStyleTableViewCellDelegate? {
-        didSet {
-            if let _ = cardStyleDelegate {
-                updateFrame()
-            }
-        }
-    }
-
-    private var leftPadding: CGFloat {
-        return cardStyleDelegate?.leftPaddingForCardStyleTableViewCell() ?? 0
-    }
-    private var rightPadding: CGFloat {
-        return cardStyleDelegate?.rightPaddingForCardStyleTableViewCell() ?? 0
-    }
-
-    private var tableView: UITableView?
+    private var tableView: CardStyleTableView?
     private var indexPath: NSIndexPath? {
         guard let tableView = tableView else {
             return nil
@@ -45,7 +17,7 @@ public class CardStyleTableViewCell: UITableViewCell {
         return tableView.indexPathForCell(self) ?? tableView.indexPathForRowAtPoint(center)
     }
     private var indexPathLocation: (isFirstRowInSection: Bool, isLastRowInSection: Bool) {
-        guard let tableView = tableView, let indexPath = indexPath  else {
+        guard let tableView = tableView, let indexPath = indexPath else {
             return (false, false)
         }
         let isFirstRowInSection = indexPath.row == 0
@@ -75,9 +47,9 @@ public class CardStyleTableViewCell: UITableViewCell {
 
     public override func didMoveToSuperview() {
         tableView = nil
-        if let tableView = superview as? UITableView {
+        if let tableView = superview as? CardStyleTableView {
             self.tableView = tableView
-        } else if let tableView = superview?.superview as? UITableView {
+        } else if let tableView = superview?.superview as? CardStyleTableView {
             self.tableView = tableView
         }
     }
@@ -87,8 +59,6 @@ public class CardStyleTableViewCell: UITableViewCell {
         guard let tableView = tableView, let wrapperView = superview where tableView.style == .Grouped else {
             return
         }
-        wrapperView.frame.origin.x = leftPadding
-        wrapperView.frame.size.width = tableView.frame.width - leftPadding - rightPadding
         frame.size.width = wrapperView.frame.width
     }
 
@@ -97,8 +67,8 @@ public class CardStyleTableViewCell: UITableViewCell {
             layer.mask = nil
             return
         }
-        var roundingCorners = cardStyleDelegate?.roundingCornersForCardInSection(indexPath.section) ?? UIRectCorner.AllCorners
-        let cornerRadius = cardStyleDelegate?.cornerRadiusForCardStyleTableViewCell() ?? 0
+        var roundingCorners = tableView.cardStyleSource?.roundingCornersForCardInSection(indexPath.section) ?? UIRectCorner.AllCorners
+        let cornerRadius = tableView.cardStyleSource?.cornerRadiusForCardStyleTableViewCell() ?? 0
         guard roundingCorners != [] else {
             layer.mask = nil
             return

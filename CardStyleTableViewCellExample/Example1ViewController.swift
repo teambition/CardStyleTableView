@@ -47,7 +47,6 @@ class Example1ViewController: UITableViewController {
         default:
             cell!.accessoryType  = .None
         }
-        cell?.cardStyleDelegate = self
         cell?.textLabel?.text = "Cell"
         cell?.detailTextLabel?.text = "Row \(indexPath.row), Section \(indexPath.section)"
 
@@ -72,7 +71,7 @@ class Example1ViewController: UITableViewController {
     }
 }
 
-extension Example1ViewController: CardStyleTableViewCellDelegate {
+extension Example1ViewController: CardStyleTableViewStyleSource {
     func roundingCornersForCardInSection(section: Int) -> UIRectCorner {
         return [.AllCorners]
     }
