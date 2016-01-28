@@ -22,7 +22,13 @@ public extension CardStyleTableViewCellDelegate {
 }
 
 public class CardStyleTableViewCell: UITableViewCell {
-    public var cardStyleDelegate: CardStyleTableViewCellDelegate?
+    public var cardStyleDelegate: CardStyleTableViewCellDelegate? {
+        didSet {
+            if let _ = cardStyleDelegate {
+                updateFrame()
+            }
+        }
+    }
 
     private var leftPadding: CGFloat {
         return cardStyleDelegate?.leftPaddingForCardStyleTableViewCell() ?? 0
@@ -36,7 +42,7 @@ public class CardStyleTableViewCell: UITableViewCell {
         guard let tableView = tableView else {
             return nil
         }
-        return tableView.indexPathForCell(self)
+        return tableView.indexPathForCell(self) ?? tableView.indexPathForRowAtPoint(center)
     }
     private var indexPathLocation: (isFirstRowInSection: Bool, isLastRowInSection: Bool) {
         guard let tableView = tableView, let indexPath = indexPath  else {
@@ -63,18 +69,7 @@ public class CardStyleTableViewCell: UITableViewCell {
 
     public override func layoutSubviews() {
         super.layoutSubviews()
-        guard let tableView = tableView else {
-            return
-        }
-        guard let wrapperView = superview else {
-            return
-        }
-        guard tableView.style == .Grouped else {
-            return
-        }
-        wrapperView.frame.origin.x = leftPadding
-        wrapperView.frame.size.width = tableView.frame.width - leftPadding - rightPadding
-        frame.size.width = wrapperView.frame.width
+        updateFrame()
         setRoundingCorners()
     }
 
@@ -88,12 +83,26 @@ public class CardStyleTableViewCell: UITableViewCell {
     }
 
     // MARK: - Helper
+    private func updateFrame() {
+        guard let tableView = tableView, let wrapperView = superview where tableView.style == .Grouped else {
+            return
+        }
+        wrapperView.frame.origin.x = leftPadding
+        wrapperView.frame.size.width = tableView.frame.width - leftPadding - rightPadding
+        frame.size.width = wrapperView.frame.width
+    }
+
     private func setRoundingCorners() {
-        guard let indexPath = indexPath else {
+        guard let tableView = tableView, let indexPath = indexPath where tableView.style == .Grouped else {
+            layer.mask = nil
             return
         }
         var roundingCorners = cardStyleDelegate?.roundingCornersForCardInSection(indexPath.section) ?? UIRectCorner.AllCorners
         let cornerRadius = cardStyleDelegate?.cornerRadiusForCardStyleTableViewCell() ?? 0
+        guard roundingCorners != [] else {
+            layer.mask = nil
+            return
+        }
 
         let maskRect = bounds
         maskLayer.frame = maskRect
