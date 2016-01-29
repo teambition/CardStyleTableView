@@ -1,5 +1,5 @@
-#CardStyleTableViewCell
-A subclass of UITableViewCell which displays a card style view for cells in grouped tableView, similar to the system's tableView before iOS 7.
+#CardStyleTableView
+An extension of UITableView and UITableViewCell which displays a card style view in grouped tableView, similar to the system's tableView before iOS 7.
 
 ![Screenshot](Screenshots/Screenshot-1.png "Screenshot-1")
 
@@ -8,39 +8,37 @@ A subclass of UITableViewCell which displays a card style view for cells in grou
 
 ##How To Get Started
 ###Carthage
-Specify "CardStyleTableViewCell" in your Cartfile:
+Specify "CardStyleTableView" in your Cartfile:
 ```ogdl 
-github "teambition/CardStyleTableViewCell"
+github "teambition/CardStyleTableView"
 ```
 
 ###Usage
-#####  Inherit CardStyleTableViewCell
+#####  Import CardStyleTableView
 ```swift
-class MyCell: CardStyleTableViewCell {
-
-}
+import CardStyleTableView
 ```
 
-Assign delegate
+##### Assign delegate
 ```swift
-cell.cardStyleDelegate = self
+tableView.cardStyleSource = self
 ```
 
-#####  Implement delegate
+#####  CardStyleTableViewStyleSource
 ```swift
 func roundingCornersForCardInSection(section: Int) -> UIRectCorner {
     // set rounding corners of this section, default is UIRectCorner.AllCorners
 }
 
-func leftPaddingForCardStyleTableViewCell() -> CGFloat {
+func leftPaddingForCardStyleTableView() -> CGFloat {
     // leftPadding
 }
 
-func rightPaddingForCardStyleTableViewCell() -> CGFloat {
+func rightPaddingForCardStyleTableView() -> CGFloat {
     // rightPadding
 }
 
-func cornerRadiusForCardStyleTableViewCell() -> CGFloat {
+func cornerRadiusForCardStyleTableView() -> CGFloat {
     // cornerRadius
 }
 ```
@@ -49,10 +47,10 @@ func cornerRadiusForCardStyleTableViewCell() -> CGFloat {
 iOS 8.0
 
 ## Release Notes
-* [Release Notes](https://github.com/teambition/CardStyleTableViewCell/releases)
+* [Release Notes](https://github.com/teambition/CardStyleTableView/releases)
 
 ## License
-CardStyleTableViewCell is released under the MIT license. See [LICENSE](https://github.com/teambition/CardStyleTableViewCell/blob/master/LICENSE.md) for details.
+CardStyleTableView is released under the MIT license. See [LICENSE](https://github.com/teambition/CardStyleTableView/blob/master/LICENSE.md) for details.
 
 ## More Info
-Have a question? Please [open an issue](https://github.com/teambition/CardStyleTableViewCell/issues/new)!
+Have a question? Please [open an issue](https://github.com/teambition/CardStyleTableView/issues/new)!
