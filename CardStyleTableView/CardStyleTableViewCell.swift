@@ -16,6 +16,7 @@ extension UITableViewCell {
         set {
             if let newValue = newValue {
                 objc_setAssociatedObject(self, &AssociatedKeys.cardStyleTableViewCellTableView, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+                updateFrame()
             }
         }
     }
@@ -103,11 +104,14 @@ extension UITableViewCell {
 
     // MARK: - Helper
     private func updateFrame() {
-        guard let tableView = tableView, let wrapperView = superview where tableView.style == .Grouped && tableView.cardStyleSource != nil else {
+        guard let tableView = tableView where tableView.style == .Grouped && tableView.cardStyleSource != nil else {
             return
         }
-        if frame.width != wrapperView.frame.width {
-            frame.size.width = wrapperView.frame.width
+        guard let leftPadding = tableView.leftPadding, let rightPadding = tableView.rightPadding else {
+            return
+        }
+        if frame.width != tableView.frame.width - leftPadding - rightPadding {
+            frame.size.width = tableView.frame.width - leftPadding - rightPadding
         }
     }
 

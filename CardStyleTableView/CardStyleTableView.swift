@@ -20,10 +20,10 @@ extension UITableView {
         }
     }
 
-    private var leftPadding: CGFloat? {
+    var leftPadding: CGFloat? {
         return cardStyleSource?.leftPaddingForCardStyleTableView()
     }
-    private var rightPadding: CGFloat? {
+    var rightPadding: CGFloat? {
         return cardStyleSource?.rightPaddingForCardStyleTableView()
     }
 
