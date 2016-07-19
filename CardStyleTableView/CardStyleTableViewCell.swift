@@ -9,15 +9,14 @@
 import UIKit
 
 extension UITableViewCell {
-    private var tableView: UITableView? {
+    private weak var tableView: UITableView? {
         get {
-            return objc_getAssociatedObject(self, &AssociatedKeys.cardStyleTableViewCellTableView) as? UITableView
+            let container = objc_getAssociatedObject(self, &AssociatedKeys.cardStyleTableViewCellTableView) as? WeakObjectContainer
+            return container?.object as? UITableView
         }
         set {
-            if let newValue = newValue {
-                objc_setAssociatedObject(self, &AssociatedKeys.cardStyleTableViewCellTableView, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-                updateFrame()
-            }
+            objc_setAssociatedObject(self, &AssociatedKeys.cardStyleTableViewCellTableView, WeakObjectContainer(object: newValue), .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            updateFrame()
         }
     }
     private var indexPath: NSIndexPath? {
@@ -81,11 +80,11 @@ extension UITableViewCell {
             static var onceToken: dispatch_once_t = 0
         }
         dispatch_once(&CardStyleSwizzleToken.onceToken) {
-            let originalSelector = Selectors.layoutSubviews
-            let swizzledSelector = Selectors.tableViewCellSwizzledLayoutSubviews
+            let originalSelector = TableViewCellSelectors.layoutSubviews
+            let swizzledSelector = TableViewCellSelectors.swizzledLayoutSubviews
 
             cardStyle_swizzleMethod(originalSelector, swizzledSelector: swizzledSelector)
-            print(__FUNCTION__)
+            print(#function)
         }
     }
 
@@ -94,11 +93,11 @@ extension UITableViewCell {
             static var onceToken: dispatch_once_t = 0
         }
         dispatch_once(&CardStyleSwizzleToken.onceToken) {
-            let originalSelector = Selectors.didMoveToSuperview
-            let swizzledSelector = Selectors.tableViewCellSwizzledDidMoveToSuperview
+            let originalSelector = TableViewCellSelectors.didMoveToSuperview
+            let swizzledSelector = TableViewCellSelectors.swizzledDidMoveToSuperview
 
             cardStyle_swizzleMethod(originalSelector, swizzledSelector: swizzledSelector)
-            print(__FUNCTION__)
+            print(#function)
         }
     }
 

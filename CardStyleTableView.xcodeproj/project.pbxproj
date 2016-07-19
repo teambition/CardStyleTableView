@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D353EF7A1D3E470D00BA2C3B /* WeakObjectContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D353EF791D3E470D00BA2C3B /* WeakObjectContainer.swift */; };
 		D3788A341C5A139B008318C1 /* CardStyleTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3788A331C5A139B008318C1 /* CardStyleTableView.swift */; };
 		D3788A361C5A19BA008318C1 /* StyleSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3788A351C5A19BA008318C1 /* StyleSource.swift */; };
 		D3788A381C5A244B008318C1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3788A371C5A244B008318C1 /* Constants.swift */; };
@@ -14,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D353EF791D3E470D00BA2C3B /* WeakObjectContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeakObjectContainer.swift; sourceTree = "<group>"; };
 		D3788A331C5A139B008318C1 /* CardStyleTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardStyleTableView.swift; sourceTree = "<group>"; };
 		D3788A351C5A19BA008318C1 /* StyleSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleSource.swift; sourceTree = "<group>"; };
 		D3788A371C5A244B008318C1 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -56,6 +58,7 @@
 				D3788A351C5A19BA008318C1 /* StyleSource.swift */,
 				D3788A331C5A139B008318C1 /* CardStyleTableView.swift */,
 				D3C25A5E1C4F3A1400D3A3DA /* CardStyleTableViewCell.swift */,
+				D353EF791D3E470D00BA2C3B /* WeakObjectContainer.swift */,
 				D3788A371C5A244B008318C1 /* Constants.swift */,
 			);
 			path = CardStyleTableView;
@@ -148,6 +151,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3788A361C5A19BA008318C1 /* StyleSource.swift in Sources */,
+				D353EF7A1D3E470D00BA2C3B /* WeakObjectContainer.swift in Sources */,
 				D3C25A5F1C4F3A1400D3A3DA /* CardStyleTableViewCell.swift in Sources */,
 				D3788A341C5A139B008318C1 /* CardStyleTableView.swift in Sources */,
 				D3788A381C5A244B008318C1 /* Constants.swift in Sources */,

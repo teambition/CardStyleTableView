@@ -13,10 +13,14 @@ struct AssociatedKeys {
     static var cardStyleTableViewCellTableView = "CardStyleTableViewCellTableView"
 }
 
-struct Selectors {
-    static let layoutSubviews: Selector = "layoutSubviews"
-    static let didMoveToSuperview: Selector = "didMoveToSuperview"
-    static let tableViewSwizzledLayoutSubviews: Selector = "cardStyle_tableViewSwizzledLayoutSubviews"
-    static let tableViewCellSwizzledLayoutSubviews: Selector = "cardStyle_tableViewCellSwizzledLayoutSubviews"
-    static let tableViewCellSwizzledDidMoveToSuperview: Selector = "cardStyle_tableViewCellSwizzledDidMoveToSuperview"
+struct TableViewSelectors {
+    static let layoutSubviews = #selector(UITableView.layoutSubviews)
+    static let swizzledLayoutSubviews = #selector(UITableView.cardStyle_tableViewSwizzledLayoutSubviews)
+}
+
+struct TableViewCellSelectors {
+    static let layoutSubviews = #selector(UITableViewCell.layoutSubviews)
+    static let didMoveToSuperview = #selector(UITableViewCell.didMoveToSuperview)
+    static let swizzledLayoutSubviews = #selector(UITableViewCell.cardStyle_tableViewCellSwizzledLayoutSubviews)
+    static let swizzledDidMoveToSuperview = #selector(UITableViewCell.cardStyle_tableViewCellSwizzledDidMoveToSuperview)
 }

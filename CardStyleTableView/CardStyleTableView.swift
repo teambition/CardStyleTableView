@@ -9,14 +9,13 @@
 import UIKit
 
 extension UITableView {
-    public var cardStyleSource: CardStyleTableViewStyleSource? {
+    public weak var cardStyleSource: CardStyleTableViewStyleSource? {
         get {
-            return objc_getAssociatedObject(self, &AssociatedKeys.cardStyleTableViewStyleSource) as? CardStyleTableViewStyleSource
+            let container = objc_getAssociatedObject(self, &AssociatedKeys.cardStyleTableViewStyleSource) as? WeakObjectContainer
+            return container?.object as? CardStyleTableViewStyleSource
         }
         set {
-            if let newValue = newValue {
-                objc_setAssociatedObject(self, &AssociatedKeys.cardStyleTableViewStyleSource, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-            }
+            objc_setAssociatedObject(self, &AssociatedKeys.cardStyleTableViewStyleSource, WeakObjectContainer(object: newValue), .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
 
@@ -47,8 +46,8 @@ extension UITableView {
             static var onceToken: dispatch_once_t = 0
         }
         dispatch_once(&CardStyleSwizzleToken.onceToken) {
-            let originalSelector = Selectors.layoutSubviews
-            let swizzledSelector = Selectors.tableViewSwizzledLayoutSubviews
+            let originalSelector = TableViewSelectors.layoutSubviews
+            let swizzledSelector = TableViewSelectors.swizzledLayoutSubviews
 
             let originalMethod = class_getInstanceMethod(self, originalSelector)
             let swizzledMethod = class_getInstanceMethod(self, swizzledSelector)
@@ -60,7 +59,7 @@ extension UITableView {
             } else {
                 method_exchangeImplementations(originalMethod, swizzledMethod)
             }
-            print(__FUNCTION__)
+            print(#function)
         }
     }
 
