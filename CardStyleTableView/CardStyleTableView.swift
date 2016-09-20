@@ -9,29 +9,29 @@
 import UIKit
 
 extension UITableView {
-    public weak var cardStyleSource: CardStyleTableViewStyleSource? {
+    // MARK: - Properties
+    public var cardStyleSource: CardStyleTableViewStyleSource? {
         get {
-            let container = objc_getAssociatedObject(self, &AssociatedKeys.cardStyleTableViewStyleSource) as? WeakObjectContainer
-            return container?.object as? CardStyleTableViewStyleSource
+            return objc_getAssociatedObject(self, &AssociatedKeys.cardStyleTableViewStyleSource) as? CardStyleTableViewStyleSource
         }
         set {
-            objc_setAssociatedObject(self, &AssociatedKeys.cardStyleTableViewStyleSource, WeakObjectContainer(object: newValue), .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            objc_setAssociatedObject(self, &AssociatedKeys.cardStyleTableViewStyleSource, newValue, .OBJC_ASSOCIATION_ASSIGN)
         }
     }
 
-    var leftPadding: CGFloat? {
+    internal var leftPadding: CGFloat? {
         return cardStyleSource?.leftPaddingForCardStyleTableView()
     }
-    var rightPadding: CGFloat? {
+    internal var rightPadding: CGFloat? {
         return cardStyleSource?.rightPaddingForCardStyleTableView()
     }
 
     // MARK: - Initialize
-    public override class func initialize() {
+    open override class func initialize() {
         if self != UITableView.self {
             return
         }
-        cardStyle_swizzleTableViewLayoutSubviews()
+        cardStyle_swizzleTableViewLayoutSubviews
     }
 
     // MARK: - Method swizzling
@@ -41,36 +41,31 @@ extension UITableView {
         updateSubviews()
     }
 
-    private class func cardStyle_swizzleTableViewLayoutSubviews() {
-        struct CardStyleSwizzleToken {
-            static var onceToken: dispatch_once_t = 0
+    fileprivate static let cardStyle_swizzleTableViewLayoutSubviews: () = {
+        let originalSelector = TableViewSelectors.layoutSubviews
+        let swizzledSelector = TableViewSelectors.swizzledLayoutSubviews
+
+        let originalMethod = class_getInstanceMethod(UITableView.self, originalSelector)
+        let swizzledMethod = class_getInstanceMethod(UITableView.self, swizzledSelector)
+
+        let didAddMethod = class_addMethod(UITableView.self, originalSelector, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod))
+
+        if didAddMethod {
+            class_replaceMethod(UITableView.self, swizzledSelector, method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod))
+        } else {
+            method_exchangeImplementations(originalMethod, swizzledMethod)
         }
-        dispatch_once(&CardStyleSwizzleToken.onceToken) {
-            let originalSelector = TableViewSelectors.layoutSubviews
-            let swizzledSelector = TableViewSelectors.swizzledLayoutSubviews
-
-            let originalMethod = class_getInstanceMethod(self, originalSelector)
-            let swizzledMethod = class_getInstanceMethod(self, swizzledSelector)
-
-            let didAddMethod = class_addMethod(self, originalSelector, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod))
-
-            if didAddMethod {
-                class_replaceMethod(self, swizzledSelector, method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod))
-            } else {
-                method_exchangeImplementations(originalMethod, swizzledMethod)
-            }
-            print(#function)
-        }
-    }
+        print("cardStyle_swizzleTableViewLayoutSubviews")
+    }()
 
     // MARK: - Helper
-    private func updateSubviews() {
-        guard let leftPadding = leftPadding, rightPadding = rightPadding where style == .Grouped && cardStyleSource != nil else {
+    fileprivate func updateSubviews() {
+        guard let leftPadding = leftPadding, let rightPadding = rightPadding, style == .grouped && cardStyleSource != nil else {
             return
         }
 
         for subview in subviews {
-            if NSStringFromClass(subview.dynamicType) == "UITableViewWrapperView" {
+            if String(describing: type(of: subview)) == "UITableViewWrapperView" {
                 if subview.frame.origin.x != leftPadding {
                     subview.frame.origin.x = leftPadding
                 }

@@ -10,62 +10,49 @@ import UIKit
 import CardStyleTableView
 
 class Example2ViewController: UITableViewController {
-
+    // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.cardStyleSource = self
     }
-    
-    // MARK: - Table view data source
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+
+    // MARK: - Table view data source and delegate
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 10
     }
-    
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return section + 1
     }
-    
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("PhotoCell", forIndexPath: indexPath) as! PhotoCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PhotoCell", for: indexPath) as! PhotoCell
         return cell
     }
-    
-    //    override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
-    //        return .Delete
-    //    }
-    //
-    //    override func tableView(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath) -> String? {
-    //        return "Delete"
-    //    }
-    //
-    //    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-    //
-    //    }
-    
-    // MARK: - Table view delegate
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        //        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
     }
 
 }
 
 extension Example2ViewController: CardStyleTableViewStyleSource {
-    func roundingCornersForCardInSection(section: Int) -> UIRectCorner {
-        return [.AllCorners]
+    func roundingCornersForCard(inSection section: Int) -> UIRectCorner {
+        return [.allCorners]
     }
-    
+
     func leftPaddingForCardStyleTableView() -> CGFloat {
         return 10
     }
-    
+
     func rightPaddingForCardStyleTableView() -> CGFloat {
         return 10
     }
-    
+
     func cornerRadiusForCardStyleTableView() -> CGFloat {
         return 6
     }

@@ -8,7 +8,7 @@ An extension of UITableView and UITableViewCell which displays a card style view
 
 ##How To Get Started
 ###Carthage
-Specify "CardStyleTableView" in your Cartfile:
+Specify "CardStyleTableView" in your ```Cartfile```:
 ```ogdl 
 github "teambition/CardStyleTableView"
 ```
@@ -26,7 +26,7 @@ tableView.cardStyleSource = self
 
 #####  CardStyleTableViewStyleSource
 ```swift
-func roundingCornersForCardInSection(section: Int) -> UIRectCorner {
+func roundingCornersForCard(inSection section: Int) -> UIRectCorner {
     // set rounding corners of this section, default is UIRectCorner.AllCorners
 }
 

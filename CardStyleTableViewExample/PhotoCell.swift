@@ -9,7 +9,6 @@
 import UIKit
 
 class PhotoCell: UITableViewCell {
-
     override func awakeFromNib() {
         super.awakeFromNib()
     }

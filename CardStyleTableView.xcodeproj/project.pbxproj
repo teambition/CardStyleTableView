@@ -7,17 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D353EF7A1D3E470D00BA2C3B /* WeakObjectContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D353EF791D3E470D00BA2C3B /* WeakObjectContainer.swift */; };
 		D3788A341C5A139B008318C1 /* CardStyleTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3788A331C5A139B008318C1 /* CardStyleTableView.swift */; };
-		D3788A361C5A19BA008318C1 /* StyleSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3788A351C5A19BA008318C1 /* StyleSource.swift */; };
+		D3788A361C5A19BA008318C1 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3788A351C5A19BA008318C1 /* Protocols.swift */; };
 		D3788A381C5A244B008318C1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3788A371C5A244B008318C1 /* Constants.swift */; };
 		D3C25A5F1C4F3A1400D3A3DA /* CardStyleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C25A5E1C4F3A1400D3A3DA /* CardStyleTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D353EF791D3E470D00BA2C3B /* WeakObjectContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeakObjectContainer.swift; sourceTree = "<group>"; };
 		D3788A331C5A139B008318C1 /* CardStyleTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardStyleTableView.swift; sourceTree = "<group>"; };
-		D3788A351C5A19BA008318C1 /* StyleSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleSource.swift; sourceTree = "<group>"; };
+		D3788A351C5A19BA008318C1 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		D3788A371C5A244B008318C1 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D3C25A531C4F393700D3A3DA /* CardStyleTableView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CardStyleTableView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3C25A5E1C4F3A1400D3A3DA /* CardStyleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardStyleTableViewCell.swift; sourceTree = "<group>"; };
@@ -55,11 +53,10 @@
 		D3C25A551C4F393700D3A3DA /* CardStyleTableView */ = {
 			isa = PBXGroup;
 			children = (
-				D3788A351C5A19BA008318C1 /* StyleSource.swift */,
+				D3788A371C5A244B008318C1 /* Constants.swift */,
+				D3788A351C5A19BA008318C1 /* Protocols.swift */,
 				D3788A331C5A139B008318C1 /* CardStyleTableView.swift */,
 				D3C25A5E1C4F3A1400D3A3DA /* CardStyleTableViewCell.swift */,
-				D353EF791D3E470D00BA2C3B /* WeakObjectContainer.swift */,
-				D3788A371C5A244B008318C1 /* Constants.swift */,
 			);
 			path = CardStyleTableView;
 			sourceTree = "<group>";
@@ -110,11 +107,12 @@
 		D3C25A4A1C4F393700D3A3DA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = Teambition;
 				TargetAttributes = {
 					D3C25A521C4F393700D3A3DA = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -150,8 +148,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3788A361C5A19BA008318C1 /* StyleSource.swift in Sources */,
-				D353EF7A1D3E470D00BA2C3B /* WeakObjectContainer.swift in Sources */,
+				D3788A361C5A19BA008318C1 /* Protocols.swift in Sources */,
 				D3C25A5F1C4F3A1400D3A3DA /* CardStyleTableViewCell.swift in Sources */,
 				D3788A341C5A139B008318C1 /* CardStyleTableView.swift in Sources */,
 				D3788A381C5A244B008318C1 /* Constants.swift in Sources */,
@@ -174,8 +171,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -222,8 +221,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -243,6 +244,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -254,6 +256,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -265,6 +268,7 @@
 				PRODUCT_NAME = CardStyleTableView;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -272,6 +276,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -282,6 +287,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Teambition.CardStyleTableView;
 				PRODUCT_NAME = CardStyleTableView;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
