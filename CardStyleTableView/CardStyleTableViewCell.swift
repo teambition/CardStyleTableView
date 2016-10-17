@@ -101,6 +101,9 @@ extension UITableViewCell {
         }
         if frame.width != tableView.frame.width - leftPadding - rightPadding {
             frame.size.width = tableView.frame.width - leftPadding - rightPadding
+            if #available(iOS 10.0, *) {
+                layoutIfNeeded()
+            }
         }
     }
 
