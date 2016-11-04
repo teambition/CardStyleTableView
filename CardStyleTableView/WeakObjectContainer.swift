@@ -11,7 +11,7 @@ import UIKit
 class WeakObjectContainer: NSObject {
     weak var object: AnyObject?
 
-    init(object: Any) {
+    init(object: Any?) {
         super.init()
         self.object = object as AnyObject
     }
