@@ -12,10 +12,11 @@ extension UITableViewCell {
     // MARK: - Properties
     fileprivate var tableView: UITableView? {
         get {
-            return objc_getAssociatedObject(self, &AssociatedKeys.cardStyleTableViewCellTableView) as? UITableView
+            let container = objc_getAssociatedObject(self, &AssociatedKeys.cardStyleTableViewCellTableView) as? WeakObjectContainer
+            return container?.object as? UITableView
         }
         set {
-            objc_setAssociatedObject(self, &AssociatedKeys.cardStyleTableViewCellTableView, newValue, .OBJC_ASSOCIATION_ASSIGN)
+            objc_setAssociatedObject(self, &AssociatedKeys.cardStyleTableViewCellTableView, WeakObjectContainer(object: newValue), .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             updateFrame()
         }
     }

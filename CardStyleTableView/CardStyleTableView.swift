@@ -12,10 +12,11 @@ extension UITableView {
     // MARK: - Properties
     public var cardStyleSource: CardStyleTableViewStyleSource? {
         get {
-            return objc_getAssociatedObject(self, &AssociatedKeys.cardStyleTableViewStyleSource) as? CardStyleTableViewStyleSource
+            let container = objc_getAssociatedObject(self, &AssociatedKeys.cardStyleTableViewStyleSource) as? WeakObjectContainer
+            return container?.object as? CardStyleTableViewStyleSource
         }
         set {
-            objc_setAssociatedObject(self, &AssociatedKeys.cardStyleTableViewStyleSource, newValue, .OBJC_ASSOCIATION_ASSIGN)
+            objc_setAssociatedObject(self, &AssociatedKeys.cardStyleTableViewStyleSource, WeakObjectContainer(object: newValue), .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
 
