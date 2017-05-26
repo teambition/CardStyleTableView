@@ -1,4 +1,4 @@
-#CardStyleTableView
+# CardStyleTableView
 An extension of UITableView and UITableViewCell which displays a card style view in grouped tableView, similar to the system's tableView before iOS 7.
 
 ![Screenshot](Screenshots/Screenshot-1.png "Screenshot-1")
@@ -6,25 +6,25 @@ An extension of UITableView and UITableViewCell which displays a card style view
 ![Screenshot](Screenshots/Screenshot-2.png "Screenshot-2")
 
 
-##How To Get Started
-###Carthage
+## How To Get Started
+### Carthage
 Specify "CardStyleTableView" in your ```Cartfile```:
 ```ogdl 
 github "teambition/CardStyleTableView"
 ```
 
-###Usage
-#####  Import CardStyleTableView
+### Usage
+####  Import CardStyleTableView
 ```swift
 import CardStyleTableView
 ```
 
-##### Assign delegate
+#### Assign delegate
 ```swift
 tableView.cardStyleSource = self
 ```
 
-#####  CardStyleTableViewStyleSource
+####  CardStyleTableViewStyleSource
 ```swift
 func roundingCornersForCard(inSection section: Int) -> UIRectCorner {
     // set rounding corners of this section, default is UIRectCorner.AllCorners
