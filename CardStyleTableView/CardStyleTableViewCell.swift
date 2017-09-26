@@ -36,7 +36,7 @@ extension UITableViewCell {
     }
 
     // MARK: - Initialize
-    open override class func initialize() {
+    internal class func cardStyle_swizzle() {
         if self != UITableViewCell.self {
             return
         }
@@ -45,14 +45,14 @@ extension UITableViewCell {
     }
 
     // MARK: - Method swizzling
-    func cardStyle_tableViewCellSwizzledLayoutSubviews() {
+    @objc func cardStyle_tableViewCellSwizzledLayoutSubviews() {
         cardStyle_tableViewCellSwizzledLayoutSubviews()
 
         updateFrame()
         setRoundingCorners()
     }
 
-    func cardStyle_tableViewCellSwizzledDidMoveToSuperview() {
+    @objc func cardStyle_tableViewCellSwizzledDidMoveToSuperview() {
         cardStyle_tableViewCellSwizzledDidMoveToSuperview()
 
         tableView = nil
@@ -64,8 +64,9 @@ extension UITableViewCell {
     }
 
     fileprivate class func cardStyle_swizzleMethod(for aClass: AnyClass, originalSelector: Selector, swizzledSelector: Selector) {
-        let originalMethod = class_getInstanceMethod(aClass, originalSelector)
-        let swizzledMethod = class_getInstanceMethod(aClass, swizzledSelector)
+        guard let originalMethod = class_getInstanceMethod(aClass, originalSelector), let swizzledMethod = class_getInstanceMethod(aClass, swizzledSelector) else {
+            return
+        }
 
         let didAddMethod = class_addMethod(aClass, originalSelector, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod))
 
@@ -100,11 +101,19 @@ extension UITableViewCell {
         guard let leftPadding = tableView.leftPadding, let rightPadding = tableView.rightPadding else {
             return
         }
+
+        var needsLayout = false
+        if frame.origin.x != leftPadding {
+            frame.origin.x = leftPadding
+            needsLayout = true
+        }
         if frame.width != tableView.frame.width - leftPadding - rightPadding {
             frame.size.width = tableView.frame.width - leftPadding - rightPadding
-            if #available(iOS 10.0, *) {
-                layoutIfNeeded()
-            }
+            needsLayout = true
+        }
+
+        if #available(iOS 10.0, *), needsLayout {
+            layoutIfNeeded()
         }
     }
 

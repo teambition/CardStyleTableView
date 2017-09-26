@@ -19,6 +19,14 @@ github "teambition/CardStyleTableView"
 import CardStyleTableView
 ```
 
+#### Setup in your ```AppDelegate```
+```swift
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    CardStyle.setup()
+    return true
+}
+```
+
 #### Assign delegate
 ```swift
 tableView.cardStyleSource = self
@@ -27,7 +35,7 @@ tableView.cardStyleSource = self
 ####  CardStyleTableViewStyleSource
 ```swift
 func roundingCornersForCard(inSection section: Int) -> UIRectCorner {
-    // set rounding corners of this section, default is UIRectCorner.AllCorners
+    // set rounding corners of this section, default is .allCorners
 }
 
 func leftPaddingForCardStyleTableView() -> CGFloat {
@@ -54,3 +62,5 @@ CardStyleTableView is released under the MIT license. See [LICENSE](https://gith
 
 ## More Info
 Have a question? Please [open an issue](https://github.com/teambition/CardStyleTableView/issues/new)!
+
+

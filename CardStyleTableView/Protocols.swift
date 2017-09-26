@@ -17,6 +17,6 @@ public protocol CardStyleTableViewStyleSource {
 
 public extension CardStyleTableViewStyleSource {
     func roundingCornersForCard(inSection section: Int) -> UIRectCorner {
-        return UIRectCorner.allCorners
+        return .allCorners
     }
 }
