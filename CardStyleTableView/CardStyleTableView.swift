@@ -28,7 +28,7 @@ extension UITableView {
     }
 
     // MARK: - Initialize
-    open override class func initialize() {
+    internal class func cardStyle_swizzle() {
         if self != UITableView.self {
             return
         }
@@ -36,7 +36,7 @@ extension UITableView {
     }
 
     // MARK: - Method swizzling
-    func cardStyle_tableViewSwizzledLayoutSubviews() {
+    @objc func cardStyle_tableViewSwizzledLayoutSubviews() {
         cardStyle_tableViewSwizzledLayoutSubviews()
 
         updateSubviews()
@@ -45,9 +45,9 @@ extension UITableView {
     fileprivate static let cardStyle_swizzleTableViewLayoutSubviews: () = {
         let originalSelector = TableViewSelectors.layoutSubviews
         let swizzledSelector = TableViewSelectors.swizzledLayoutSubviews
-
-        let originalMethod = class_getInstanceMethod(UITableView.self, originalSelector)
-        let swizzledMethod = class_getInstanceMethod(UITableView.self, swizzledSelector)
+        guard let originalMethod = class_getInstanceMethod(UITableView.self, originalSelector), let swizzledMethod = class_getInstanceMethod(UITableView.self, swizzledSelector) else {
+            return
+        }
 
         let didAddMethod = class_addMethod(UITableView.self, originalSelector, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod))
 
@@ -65,21 +65,13 @@ extension UITableView {
             return
         }
 
-        for subview in subviews {
-            if String(describing: type(of: subview)) == "UITableViewWrapperView" {
-                if subview.frame.origin.x != leftPadding {
-                    subview.frame.origin.x = leftPadding
+        subviews.forEach {
+            if $0 is UITableViewHeaderFooterView {
+                if $0.frame.origin.x != leftPadding {
+                    $0.frame.origin.x = leftPadding
                 }
-                if subview.frame.width != frame.width - leftPadding - rightPadding {
-                    subview.frame.size.width = frame.width - leftPadding - rightPadding
-                }
-            }
-            if subview is UITableViewHeaderFooterView {
-                if subview.frame.origin.x != leftPadding {
-                    subview.frame.origin.x = leftPadding
-                }
-                if subview.frame.width != frame.width - leftPadding - rightPadding {
-                    subview.frame.size.width = frame.width - leftPadding - rightPadding
+                if $0.frame.width != frame.width - leftPadding - rightPadding {
+                    $0.frame.size.width = frame.width - leftPadding - rightPadding
                 }
             }
         }
