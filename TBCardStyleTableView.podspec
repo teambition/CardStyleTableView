@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = "TBCardStyleTableView"
-  spec.version      = "0.1.4"
+  spec.version      = "0.1.5"
   spec.summary      = "TBCardSyleTableView is an extension of UITableView and UITableViewCell which displays a card style view in grouped tableView"
 
   spec.homepage     = "https://github.com/teambition/CardStyleTableView"
