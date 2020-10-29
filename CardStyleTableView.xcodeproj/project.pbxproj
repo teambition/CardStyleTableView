@@ -291,7 +291,8 @@
 				INFOPLIST_FILE = "$(SRCROOT)/CardStyleTableView/Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Teambition.CardStyleTableView;
+				MARKETING_VERSION = 0.1.5;
+				PRODUCT_BUNDLE_IDENTIFIER = com.teambition.CardStyleTableView;
 				PRODUCT_NAME = CardStyleTableView;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -311,7 +312,8 @@
 				INFOPLIST_FILE = "$(SRCROOT)/CardStyleTableView/Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Teambition.CardStyleTableView;
+				MARKETING_VERSION = 0.1.5;
+				PRODUCT_BUNDLE_IDENTIFIER = com.teambition.CardStyleTableView;
 				PRODUCT_NAME = CardStyleTableView;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
